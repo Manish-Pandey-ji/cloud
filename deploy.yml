@@ -3,7 +3,7 @@
     - name: Deploy to AWS
       docker_container:
         name: backend-service
-        image: mp708514@gmail.com/backend-service
+        image: manishpandey123/backend-service
         state: started
         restart_policy: always
         ports:
@@ -11,7 +11,7 @@
     - name: Deploy to Azure
       docker_container:
         name: frontend-service
-        image: mp708514@gmail.com/frontend-service
+        image: manishpandey123/frontend-service
         state: started
         restart_policy: always
         ports:
