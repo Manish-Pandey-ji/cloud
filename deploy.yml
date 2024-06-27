@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: node
   tasks:
     - name: Deploy to AWS
       docker_container:
@@ -8,12 +8,3 @@
         restart_policy: always
         ports:
           - "8081:8081"
-    - name: Deploy to Azure
-      docker_container:
-        name: frontend-service
-        image: manishpandey123/frontend-service
-        state: started
-        restart_policy: always
-        ports:
-          - "5000:5000"
-
