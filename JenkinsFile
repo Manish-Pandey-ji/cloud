@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/mp708514@gmail.com/cloud.git'
+                git 'https://github.com/Manish-Pandey-ji/cloud'
             }
         }
         stage('Build Backend') {
@@ -26,10 +26,10 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        sh 'docker tag backend-service mp708514@gmail.com/backend-service'
-                        sh 'docker tag frontend-service mp708514@gmail.com/frontend-service'
-                        sh 'docker push mp708514@gmail.com/backend-service'
-                        sh 'docker push mp708514@gmail.com/frontend-service'
+                        sh 'docker tag backend-service manishpandey123/backend-service'
+                        sh 'docker tag frontend-service manishpandey123/frontend-service'
+                        sh 'docker manishpandey123/backend-service'
+                        sh 'docker push manishpandey123/frontend-service'
                     }
                 }
             }
@@ -41,4 +41,3 @@ pipeline {
         }
     }
 }
-
