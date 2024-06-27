@@ -1,10 +1,14 @@
 pipeline {
     agent any
+    environment {
+        GITHUB_TOKEN = credentials('github-token')
+    }
 
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/Manish-Pandey-ji/cloud'
+                git 'https://github.com/Manish-Pandey-ji/cloud.git',
+		credentialsId: 'github-token'
             }
         }
         stage('Build Backend') {
