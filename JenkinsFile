@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
+                dir('fronted') {
                     sh 'docker build -t frontend-service .'
                 }
             }
