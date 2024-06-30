@@ -1,5 +1,7 @@
 ---
 - hosts: node
+  remote_user: "{{ lookup ('env', 'REMOTE_USER') }}"
+  become: yes
   tasks:
     - name: Check if backend-service image exists
       command: docker images manishpandey123/backend-service | grep -q manishpandey123/backend-service
@@ -8,14 +10,14 @@
 
     - name: Pull backend-service image if not present
       docker_image:
-        name: manishpandey123/backend-service
+        name: backend-service
         source: pull
       when: backend_image_check.rc != 0
 
     - name: Run backend-service container
       docker_container:
         name: backend-service
-        image: manishpandey123/backend-service
+        image: backend-service
         state: started
         restart_policy: always
         ports:
@@ -28,14 +30,14 @@
 
     - name: Pull frontend-service image if not present
       docker_image:
-        name: manishpandey123/frontend-service
+        name: frontend-service
         source: pull
       when: frontend_image_check.rc != 0
 
     - name: Run frontend-service container
       docker_container:
         name: frontend-service
-        image: manishpandey123/frontend-service
+        image: frontend-service
         state: started
         restart_policy: always
         ports:

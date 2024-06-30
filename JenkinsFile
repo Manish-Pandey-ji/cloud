@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         GITHUB_TOKEN = credentials('github')
+	REMOTE_USER = 'ubuntu'
     }
 
     stages {
@@ -43,7 +44,8 @@ pipeline {
             steps {
                 ansiblePlaybook(
 		   playbook: 'deploy.yml',
-	  	   inventory: 'ansible/inventories/hosts node'
+	  	   inventory: 'ansible/inventories/hosts node',
+		   extras: "-e 'target-host=node'"
 		)
             }
         }
