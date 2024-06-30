@@ -44,6 +44,7 @@ pipeline {
                 ansiblePlaybook(
 		   playbook: 'deploy.yml',
 	  	   inventory: 'ansible/inventories/hosts'
+		)
             }
         }
     }
