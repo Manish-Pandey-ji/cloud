@@ -8,7 +8,7 @@
         restart_policy: always
         ports:
           - "8081:8081"
-    - name: Deploy to Azure
+    - name: Deploy to AWS
       docker_container:
         name: frontend-service
         image: manishpandey123/frontend-service
