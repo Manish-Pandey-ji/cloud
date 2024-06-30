@@ -1,6 +1,18 @@
+---
 - hosts: node
   tasks:
-    - name: Deploy to AWS
+    - name: Check if backend-service image exists
+      command: docker images manishpandey123/backend-service | grep -q manishpandey123/backend-service
+      register: backend_image_check
+      changed_when: false
+
+    - name: Pull backend-service image if not present
+      docker_image:
+        name: manishpandey123/backend-service
+        source: pull
+      when: backend_image_check.rc != 0
+
+    - name: Run backend-service container
       docker_container:
         name: backend-service
         image: manishpandey123/backend-service
@@ -8,7 +20,19 @@
         restart_policy: always
         ports:
           - "8081:8081"
-    - name: Deploy to AWS
+
+    - name: Check if frontend-service image exists
+      command: docker images manishpandey123/frontend-service | grep -q manishpandey123/frontend-service
+      register: frontend_image_check
+      changed_when: false
+
+    - name: Pull frontend-service image if not present
+      docker_image:
+        name: manishpandey123/frontend-service
+        source: pull
+      when: frontend_image_check.rc != 0
+
+    - name: Run frontend-service container
       docker_container:
         name: frontend-service
         image: manishpandey123/frontend-service
@@ -16,3 +40,4 @@
         restart_policy: always
         ports:
           - "5000:5000"
+

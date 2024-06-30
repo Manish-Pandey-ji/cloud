@@ -43,7 +43,7 @@ pipeline {
             steps {
                 ansiblePlaybook(
 		   playbook: 'deploy.yml',
-	  	   inventory: 'ansible/inventories/hosts'
+	  	   inventory: 'ansible/inventories/hosts node'
 		)
             }
         }
