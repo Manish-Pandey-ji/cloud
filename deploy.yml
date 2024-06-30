@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: node
   tasks:
     - name: Deploy to AWS
       docker_container:
@@ -8,6 +8,7 @@
         restart_policy: always
         ports:
           - "8081:8081"
+<<<<<<< HEAD
     - name: Deploy to AWS
       docker_container:
         name: frontend-service
@@ -17,3 +18,5 @@
         ports:
           - "5000:5000"
 
+=======
+>>>>>>> 981bff3f4e148300c1e74fb8b17037732a36689c
