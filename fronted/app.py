@@ -9,5 +9,5 @@ def frontend_hello():
     return jsonify(message="Hello from the frontend!", backend_message=backend_response.text)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0",debug=True, port=5000)
 
