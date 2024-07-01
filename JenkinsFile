@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         GITHUB_TOKEN = credentials('github')
-	REMOTE_SSH_KEY = credentials('ssh-id') 
     }
 
     stages {
@@ -40,13 +39,5 @@ pipeline {
                 }
             }
         }
-	stage('Deploy') {
-            steps {
-                script{
-		    sshagent(['ssh-id']){
-			sh 'ssh -o StrictHostKeyChecking=no ubuntu@13.233.120.213 "ansible-playbook -i ansible/inventories/hosts deploy.yml --become"'
-     		    }	
-		}
-	}
     }
 }
