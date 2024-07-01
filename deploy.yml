@@ -1,6 +1,6 @@
 ---
 - hosts: node
-  remote_user: "{{ lookup ('env', 'REMOTE_USER') }}"
+  remote_user: 'ubuntu' 
   become: yes
   tasks:
     - name: Check if backend-service image exists
