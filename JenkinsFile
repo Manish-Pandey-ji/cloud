@@ -41,7 +41,7 @@ pipeline {
         }
 	stage('Deploy') {
             steps {
-                ansiblePlaybook playbook: 'deploy.yml'
+                ansiblePlaybook playbook: 'git-repo/deploy.yml'
         	}
 	}
     }

@@ -1,21 +1,40 @@
 ---
 - name: Deploy the dockerfile
-  hosts: node 
+  hosts: node
   become: yes
   tasks:
+    - name: Install pip3 and virtualenv
+      apt:
+        name:
+          - python3-pip
+          - python3-venv
+        state: present
+
+    - name: Create a virtual environment for Ansible
+      command: python3 -m venv /home/ubuntu/ansible_env
+
+    - name: Install Docker SDK for Python in virtual environment
+      command: /home/ubuntu/ansible_env/bin/pip install docker
+
     - name: Run backend-service container
+      environment:
+        PATH: /home/ubuntu/ansible_env/bin:{{ ansible_env.PATH }}
+        VIRTUAL_ENV: /home/ubuntu/ansible_env
       docker_container:
         name: backend-service
-        image: backend-service
+        image: manishpandey123/backend-service
         state: started
         restart_policy: always
         ports:
           - "8081:8081"
 
     - name: Run frontend-service container
+      environment:
+        PATH: /home/ubuntu/ansible_env/bin:{{ ansible_env.PATH }}
+        VIRTUAL_ENV: /home/ubuntu/ansible_env
       docker_container:
         name: frontend-service
-        image: frontend-service
+        image: manishpandey123/frontend-service
         state: started
         restart_policy: always
         ports:
