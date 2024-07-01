@@ -1,6 +1,6 @@
 ---
-- hosts: node
-  remote_user: 'ubuntu' 
+- name: Deploy the dockerfile
+  hosts: node 
   become: yes
   tasks:
     - name: Check if backend-service image exists

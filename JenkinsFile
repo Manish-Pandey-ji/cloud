@@ -41,10 +41,7 @@ pipeline {
         }
 	stage('Deploy') {
             steps {
-                ansiblePlaybook(
-		   playbook: 'deploy.yml',
-	  	   inventory: 'ansible/inventories/hosts node'
-		)
+                ansiblePlaybook playbook: 'deploy.yml'
         	}
 	}
     }
