@@ -7,9 +7,10 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git url: 'https://github.com/Manish-Pandey-ji/cloud.git',
-                branch: 'main',
-                credentialsId: 'github'
+                checkout([$class: 'GitSCM', 
+                          branches: [[name: '*/main']], 
+                          userRemoteConfigs: [[url: 'https://github.com/Manish-Pandey-ji/cloud.git']]
+                ])
             }
         }
         stage('Build Backend') {
