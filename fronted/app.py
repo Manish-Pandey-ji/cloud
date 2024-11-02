@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/frontend-hello')
 def frontend_hello():
-    backend_response = requests.get('http://13.233.120.213:8081/hello')
+    backend_response = requests.get('http://3.108.52.231:8081/hello')
     return jsonify(message="Hello from the frontend!", backend_message=backend_response.text)
 
 if __name__ == '__main__':
