@@ -27,7 +27,7 @@ pipeline {
         stage('Push to Registry') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'Docker_ID') {
                         sh 'docker tag backend-service manishpandey123/backend-service'
                         sh 'docker tag frontend-service manishpandey123/frontend-service'
                         sh 'docker push manishpandey123/backend-service'
